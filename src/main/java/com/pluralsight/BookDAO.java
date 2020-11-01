@@ -92,7 +92,7 @@ public class BookDAO {
     }
     
     public void deleteBook(int id) {
-        String SQL = "DELETE FROM BOOK WHERE id = ?";
+        String SQL = "DELETE FROM book WHERE id = ?";
         
         try
         {
