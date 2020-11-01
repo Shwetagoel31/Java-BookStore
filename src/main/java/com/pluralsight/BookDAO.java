@@ -92,11 +92,11 @@ public class BookDAO {
     }
     
     public void deleteBook(int id) {
-        String SQL = "DELETE FROM book WHERE id = ?";
+        String sql = "DELETE FROM book WHERE id = ?";
         
         try
         {
-            PreparedStatement statement = jdbcConnection.prepareStatement(SQL);
+            PreparedStatement statement = jdbcConnection.prepareStatement(sql);
             statement.setInt(1, id);
             statement.executeUpdate();
             statement.close();
@@ -107,5 +107,22 @@ public class BookDAO {
             e.printStackTrace();
         }
         
+    }
+    
+    public void updateBook(Book book) {
+        String sql = "UPDATE book SET title = ?, author = ?, price = ? WHERE id = ?";
+        
+        try {
+            PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+            statement.setString(1, book.getTitle());
+            statement.setString(2, book.getAuthor());
+            statement.setFloat(3, book.getPrice());
+            statement.setInt(4, book.getId());
+            statement.executeUpdate();
+            statement.close();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
